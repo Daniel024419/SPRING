@@ -6,10 +6,12 @@ import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 
-@Document(collation = "users")
+@Document(collection = "users")
 public class User {
+
+    //streucture model for databese
     @Id
-    private String userId;
+    private String _id;
     private String username;
     private String location;
     private String profile;
@@ -20,26 +22,26 @@ public class User {
 
     // constructor
     // Constructor with required fields
-    public User(String userId, String username, String location, String profile, String password, String usermail) {
-        this.userId = userId;
+    public User(String username, String location, String profile, String password, String usermail) {
         this.username = username;
         this.location = location;
         this.profile = profile;
         this.password = password;
         this.usermail = usermail;
-        
         this.createdAt = new Date();
         this.updatedAt = new Date();
     }
     // Getters and setters...
 
-    public String getUserId() {
-        return userId;
+
+    public String get_id() {
+        return username;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void set_id(String _id) {
+        this._id = _id;
     }
+
 
     public String getUsername() {
         return username;

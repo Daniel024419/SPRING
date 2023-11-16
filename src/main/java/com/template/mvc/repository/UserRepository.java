@@ -11,5 +11,6 @@ public interface UserRepository extends MongoRepository<User, String> {
     
     // Define a method to update a user by username
     //void updateByUsername(String username, User updatedUser);
+
 }
 
