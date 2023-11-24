@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <form method="post" id="loginFrom" enctype="multipart/form-data">
+        <div class="form-conatiner">
+            <div class="input-box">
+                <label for="usermail">Mail : </label>
+                <input type="email" class="input" name="usermail" id="usermail">
+            </div>
+
+            <div class="input-box">
+                <label for="usermail">Password</label>
+                <input type="password" class="input" name="password" id="password">
+            </div>
+
+            <div class="input-box">
+
+                <button type="button" class="submit input" value="Login" name="submit" id="submit"
+                    onclick="submitForm()">Login</button>
+            </div>
+
+
+
+        </div>
+
+    </form>
+
+
+    <script src="js/jquery-3.6.4.min.js"></script>
+
+    <script src="js/sweetalert.min.js"></script>
+
+
+    <script>
+        function submitForm() {
+            // Serialize form data to FormData
+            var formData = new FormData($("#loginFrom")[0]);
+            // Send AJAX request
+            $.ajax({
+                type: "POST",
+                processData: false,
+                contentType: false,
+                url: "/api/auth/authenticate-users",
+                data: formData, // Use the FormData directly
+                success: function (response) {
+
+                    // Handle success scenario
+                    swal("Good job!", response, "success");
+                   
+
+                },
+
+                error: function (xhr, textStatus, errorThrown) {
+                    //console.error("Error loggin user:", errorThrown);
+                    if (xhr.status === 404) {
+
+                        swal("Oops!", xhr.responseText, "error");
+
+                    } else if (xhr.status === 401 || xhr.status === 400) {
+
+                        swal("Oops!", xhr.responseText, "error");
+
+                    } else if (xhr.status === 500 || xhr.status === 501) {
+                        swal("Oops!", xhr.responseText, "error");
+
+                    }
+                }
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>

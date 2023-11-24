@@ -15,33 +15,42 @@ public class User {
     private String username;
     private String location;
     private String profile;
+    private String tel;
     private String password;
     private String usermail;
     private Date createdAt;
     private Date updatedAt;
+    private Date lastVisit;
+
+
+    //default constructor
+    public User(){
+
+    }
 
     // constructor
     // Constructor with required fields
-    public User(String username, String location, String profile, String password, String usermail) {
+    public User(String username, String location, String profile, String tel, String password, String usermail) {
         this.username = username;
         this.location = location;
         this.profile = profile;
+        this.tel = tel;
         this.password = password;
         this.usermail = usermail;
         this.createdAt = new Date();
         this.updatedAt = new Date();
+        this.lastVisit = new Date();
     }
+
+    
     // Getters and setters...
-
-
     public String get_id() {
-        return username;
+        return _id;
     }
 
     public void set_id(String _id) {
         this._id = _id;
     }
-
 
     public String getUsername() {
         return username;
@@ -65,6 +74,14 @@ public class User {
 
     public void setProfile(String profile) {
         this.profile = profile;
+    }
+
+        public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public String getPassword() {
@@ -98,4 +115,13 @@ public class User {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public Date getLastVisit() {
+        return lastVisit;
+    }
+
+    public void setLastVisit(Date lastVisit) {
+        this.lastVisit = lastVisit;
+    }
+    
 }

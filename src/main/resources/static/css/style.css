@@ -1,0 +1,124 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#userForm {
+    display: grid;
+    grid-template-columns: repeat(2);
+
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#userForm input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 500px;
+    border-radius: 8px;
+}
+
+#userForm button {
+    padding: 10px;
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+    margin: 20px 0px;
+    cursor: pointer;
+}
+
+.del-btn , .view-btn , .edit-btn{
+    padding: 5px 10px;
+    margin: 4px;
+    border:none;
+    cursor: pointer;
+}
+
+.del-btn{
+    background-color:red;
+    color: white;
+    
+}
+
+.edit-btn{
+    background-color:green;
+    color: white; 
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+  }
+  
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  .form-conatiner{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 170px 35%;
+    border: 1px solid #ccc;
+    padding: 50px 20px;
+    border-radius:9px;
+  }
+
+
+  @media (max-width:900px) {
+    .form-conatiner{
+
+        margin: 120px 4%;
+ 
+      }
+  }
+
+  .input-box{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+  .input-box .input{
+    border:1px solid #ccc;
+    padding:15px 10px;
+    border-radius:8px;
+
+}
+
+.input-box .login , .submit{
+    margin-top: 10px;
+}
+
+.err-msg{
+    padding: 3px 6px;
+    background-color:tomato;
+    border-radius:9px
+}
+
+.err-msg p{
+    color:rgb(255, 255, 255);
+    padding-left: 7px;
+}

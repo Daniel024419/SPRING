@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot with Thymeleaf</title>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- HTML form -->
+    <form id="userForm" autocomplete="off" method="put" enctype="multipart/form-data">
+        
+        <input type="hidden" id="_id" name="_id" -required>
+        
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" -required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+
+        <label for="profile">Profile:</label>
+        <input type="file" id="profile" name="file" accept="image/*">
+
+        <label for="profile">Tel:</label>
+        <input type="tel" id="tel" name="tel">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+
+        <label for="usermail">Usermail:</label>
+        <input type="text" id="usermail" name="usermail" required>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script src="/js/jquery-3.6.4.min.js"></script>
+
+    <script src="/js/sweetalert.min.js"></script>
+    <script>
+        function submitForm() {
+            // Serialize form data to FormData
+            var formData = new FormData($("#userForm")[0]);
+
+
+
+            // Send AJAX request
+            $.ajax({
+                type: "PUT",
+                processData: false,
+                contentType: false,
+                url: "http://localhost:8080/api/users/update-users",
+                data: formData, // Use the FormData directly
+                success: function (response) {
+
+                    // Handle success scenario
+                    swal("Good job!", response, "success");
+
+
+                },
+
+                error: function (xhr, textStatus, errorThrown) {
+                    //console.error("Error saving user:", errorThrown);
+                    if (xhr.status === 400) {
+
+                    swal("Oops!", xhr.responseText, "error");
+
+
+                    } else if (xhr.status === 500) {
+                        swal("Oops!", xhr.responseText, "error");
+
+                    } else {
+                        swal("Oops!", "Something happened , Please try again", "error");
+
+                    }
+                }
+            });
+        }
+
+
+
+        var currentUrl = window.location.href;
+        var pathArray = window.location.pathname.split('/');
+        var _id = pathArray[4];
+
+        $(document).ready(function () {
+
+
+            $.ajax({
+                type: "GET",
+                url: `/api/users/search-users-with-id?_id=${_id}`,
+                success: function (user) {
+                    $("#_id").val(user._id);
+                    $("#username").val(user.username);
+                    $("#usermail").val(user.usermail);
+                    $("#tel").val(user.tel);
+                    $("#location").val(user.location);
+                    $("#createdAt").val(user.createdAt);
+                    //$("#profile").val(user.profile);
+
+                },
+                error: function (xhr, textStatus, errorThrown) {
+             
+                    if (xhr.status === 400) {
+
+                        document.getElementById("card").style.display = 'none'
+                        swal("Oops!", "Bad Request , Try again", "error")
+                            .then((ok) => {
+                                window.location.href = '/'
+                            });
+
+                    } else {
+
+                        document.getElementById("card").style.display = 'none'
+                        swal("Oops!", "Something happened , Please try again", "error")
+                            .then((ok) => {
+                                window.location.href = '/'
+                            });
+
+                    }
+
+
+                }
+            })
+
+        })
+    </script>
+
+</body>
+
+</htm>
