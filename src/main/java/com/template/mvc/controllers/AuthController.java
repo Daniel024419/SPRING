@@ -58,7 +58,7 @@ public class AuthController {
                 if (isPasswordCorrect) {
                     existingUserOptional.setLastVisit(new Date()); // Set the updatedAt field to
                     // the current date
-
+                    
                     return ResponseEntity.ok().body("Accout authenticated");
 
                 } else {

@@ -18,10 +18,10 @@ public class User {
     private String tel;
     private String password;
     private String usermail;
+    private String role;
     private Date createdAt;
     private Date updatedAt;
     private Date lastVisit;
-
 
     //default constructor
     public User(){
@@ -37,6 +37,7 @@ public class User {
         this.tel = tel;
         this.password = password;
         this.usermail = usermail;
+        this.role = "ADMIN";
         this.createdAt = new Date();
         this.updatedAt = new Date();
         this.lastVisit = new Date();
@@ -98,6 +99,14 @@ public class User {
 
     public void setUsermail(String usermail) {
         this.usermail = usermail;
+    }
+
+     public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Date getCreatedAt() {

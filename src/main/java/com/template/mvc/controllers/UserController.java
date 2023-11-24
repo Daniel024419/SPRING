@@ -80,7 +80,6 @@ public class UserController {
 
             if (existingUserOptional != null) {
                 return ResponseEntity.badRequest().body("Usermail already exist , Please , use different mail");
-
             }
 
             // hash the password
